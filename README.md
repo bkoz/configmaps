@@ -50,6 +50,13 @@ Confirm the configmap was created.
 oc get configmap
 ~~~
 
+Expected Output:
+
+~~~shell
+NAME          DATA      AGE
+game-config   2         10s
+~~~
+
 Create a sample applciation.
 
 ~~~shell
@@ -61,6 +68,12 @@ Inject the configmap into the deployment config.
 ~~~shell
 oc get deploymentconfig
 oc volume deploymentconfig/cakephp-mysql-example --add --configmap-name=game-config --mount-path=/config
+~~~
+
+Expected Output:
+
+~~~shell
+deploymentconfig "cakephp-mysql-example" updated
 ~~~
 
 Wait for the new pod to deploy and verify the configmap is mounted to the pod.
